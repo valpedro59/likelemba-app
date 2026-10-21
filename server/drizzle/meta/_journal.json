@@ -8,6 +8,13 @@
       "when": 1791708029900,
       "tag": "0000_zippy_may_parker",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1792447202873,
+      "tag": "0001_tranquil_tyrannus",
+      "breakpoints": true
     }
   ]
 }

@@ -311,3 +311,20 @@ export const reminders = pgTable(
     unique("reminders_once_uq").on(t.contributionId, t.kind, t.channel),
   ],
 );
+
+export const otpCodes = pgTable(
+  "otp_codes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    phone: varchar("phone", { length: 20 }).notNull(),
+    codeHash: varchar("code_hash", { length: 64 }).notNull(),
+    fullName: varchar("full_name", { length: 255 }),
+    momoProvider: providerEnum("momo_provider"),
+    attempts: integer("attempts").notNull().default(0),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (t) => [index("otp_codes_phone_idx").on(t.phone)],
+);
